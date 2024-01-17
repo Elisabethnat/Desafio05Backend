@@ -1,5 +1,5 @@
-import local from "passport-local"; //estrategia 
-import passport from "passport"; //handler de estrategia
+import local from "passport-local"; //Estrategia 
+import passport from "passport"; //Handler de estrategia
 import GithubStrategy from 'passport-github2';
 import { createHash, validatePassword } from "../utils/bcrypt.js";
 import { userModel } from "../models/users.model.js";
@@ -8,7 +8,7 @@ import { userModel } from "../models/users.model.js";
  const LocalStrategy = local.Strategy;
  //Función de mi estrategia
  const initializePassport = () => {
-    //Acá defino qué y en qué ruta voy a utilizar mi estrategia
+    //Defino qué y en qué ruta voy a utilizar mi estrategia
     passport.use('register', new LocalStrategy(
          {passReqToCallback: true, usernameField:'email'}, async (req, username, password, done) => {
             //Defino como registrar un usuario
@@ -54,7 +54,7 @@ import { userModel } from "../models/users.model.js";
       clientSecret: process.env.CLIENT_SECRET,
       callbackURL: process.env.CALLBACK_URL
  
-   }, async (accesToken, refreshToken, profile, done)=>{ //es para registrarse
+   }, async (accesToken, refreshToken, profile, done)=>{ //Para registrarse
       console.log(accesToken);
       console.log(refreshToken);
       try { 
@@ -67,7 +67,7 @@ import { userModel } from "../models/users.model.js";
                last_name:" ",
                email: profile._json.email,
                age: 18,  
-               password: 'password' //le paso una pass generica.
+               password: 'password' //le paso un pass generica.
             })
             done(null, userCreated)
          };    
@@ -75,7 +75,7 @@ import { userModel } from "../models/users.model.js";
          done(error)
       };
    })); 
-   //Inicializamos la session del user
+   //session del user
    passport.serializeUser((user, done) => {
       done(null, user._id);
    });
