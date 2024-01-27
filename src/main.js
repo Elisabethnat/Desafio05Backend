@@ -36,6 +36,8 @@ const io = new Server(server);
 //middlewares
 app.use(express.json());
 app.use(cookieParser(process.env.SIGNED_COOKIE));
+
+app.use(express.urlencoded({extended: true }));
 app.use(session({ 
     store: MongoStore.create({
         mongoUrl: process.env.MONGO_URL, 
